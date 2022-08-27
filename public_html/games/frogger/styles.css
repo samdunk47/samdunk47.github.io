@@ -1,0 +1,207 @@
+.grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 2px solid black;
+  height: 780px;
+  width: 780px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid div {
+  height: 60px;
+  width: 60px;
+}
+
+.ending-block {
+  width: 100%;
+  height: 100%;
+  background-image: url(images/star.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.starting-block {
+  width: 100%;
+  height: 100%;
+  background-image: url(images/star2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#time-left-heading {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+#time-left {
+  position: absolute;
+  top: 250%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+}
+
+#result {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+}
+
+#instructions-heading {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  position: absolute;
+  top: 10%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+}
+
+#instructions {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  position: absolute;
+  top: 35%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+}
+
+#start-pause-button {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 70px;
+  border: 0;
+  border-radius: 5px;
+  background-color: lightgreen;
+  font-size: 30px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#start-pause-button:hover {
+  cursor: pointer;
+  background-color: rgb(70, 219, 70);
+}
+
+/*
+.l1,
+.l2,
+.l3 {
+  background-color: brown;
+}
+
+.log-right-fast.l1,
+.log-right-fast.l2,
+.log-right-fast.l3 {
+  background-color: maroon;
+}
+*/
+
+.l1.log-left, .l2.log-left, .l3.log-left {
+  background-image: url(images/log2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(90deg);
+}
+
+.l1.log-left.frog, .l2.log-left.frog, .l3.log-left.frog {
+  background-color: #5f4626;
+  background-image: url(images/frog2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(0deg);
+}
+
+.l1.log-right-fast, .l2.log-right-fast, .l3.log-right-fast {
+  background-image: url(images/log.jpeg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(90deg);
+}
+
+.l1.log-right-fast.frog, .l2.log-right-fast.frog, .l3.log-right-fast.frog {
+  background-color: #1f180e;
+  background-image: url(images/frog2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(0deg);
+}
+
+.l1.log-right, .l2.log-right, .l3.log-right {
+  background-image: url(images/log3.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(90deg);
+}
+
+.l1.log-right.frog, .l2.log-right.frog, .l3.log-right.frog {
+  background-color: #482a0e;
+  background-image: url(images/frog2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(0deg);
+}
+
+.l4,
+.l5 {
+  background-color: rgb(151, 205, 223);
+}
+
+.c1.car-left {
+  background-image: url(images/car1.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.c1.car-left-fast {
+  background-image: url(images/car2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.c1.car-right {
+  background-image: url(images/car3.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.car-background {
+  background-color: lightgray;
+}
+
+.starting-block.frog {
+  background-color: #e91d63;
+  background-image: url(images/frog2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.ending-block.frog {
+  background-color: #f7fe00;
+  background-image: url(images/frog2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.frog {
+  background-image: url(images/frog2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

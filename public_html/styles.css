@@ -1,0 +1,98 @@
+body {
+  background-color: rgb(40, 40, 104);
+}
+
+a {
+  width: 400px;
+  height: 150px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(40, 40, 104);
+}
+
+#container {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.link-to-game {
+  font-family: monospace;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 50px;
+  width: 400px;
+  height: 150px;
+  color: white;
+}
+
+.link-to-game:hover {
+  cursor: pointer;
+  background-image: none !important;
+}
+
+#frogger {
+  background-image: url(https://www.samchandler.co.uk/images/compressed/frogger-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 150px;
+  background-color: lightgreen;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#breakout {
+  background-image: url(https://www.samchandler.co.uk/images/compressed/breakout-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 150px;
+  background-color: lightblue;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#rock-paper-scissors {
+  background-image: url(https://www.samchandler.co.uk/images/compressed/rock-paper-scissors-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 150px;
+  background-color: lightpink;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#memory-game {
+  background-image: url(https://www.samchandler.co.uk/images/compressed/memory-game-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 150px;
+  background-color: rgb(6, 190, 0);
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#whac-a-mole {
+  background-image: url(https://www.samchandler.co.uk/images/compressed/whac-a-mole-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 150px;
+  background-color: rgb(255, 98, 98);
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#pong {
+  background-image: url(https://www.samchandler.co.uk/images/compressed/pong-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 150px;
+  background-color: #17bebb;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#connect-four {
+  background-image: url(https://www.samchandler.co.uk/images/compressed/connect-four-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 150px;
+  background-color: #dce46a;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+
+

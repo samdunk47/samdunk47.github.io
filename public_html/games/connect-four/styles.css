@@ -1,0 +1,53 @@
+body {
+  background-color: rgb(40, 40, 104, 0.25);
+}
+
+.turn-display,
+.turn-display-text {
+  font-family: monospace;
+  font-size: 3vw;
+  margin-left: calc((100vh / 5));
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.winner-display {
+  position: relative;
+  text-align: center;
+  height: 0;
+  margin: 0;
+  top: 50%;
+  line-height: 200px;
+  margin-top: -100px;
+  width: 100%;
+  font-family: monospace;
+  font-size: 10vw;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.grid {
+  width: calc(70vw + 14px);
+  height: calc(60vh + 12px);
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+    margin-left: calc((100vh / 5))
+}
+
+.space {
+  width: 10vw;
+  height: 10vh;
+  border: 1px solid black;
+}
+
+.space {
+  background-color: white;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}

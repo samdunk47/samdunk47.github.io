@@ -1,0 +1,85 @@
+html {
+  --block-size: calc(75vh / 13);
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background-color: rgb(40, 40, 104, 0.25);
+}
+
+#home-button:hover {
+  cursor: pointer;
+}
+
+.grid {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: solid black 2px;
+  overflow: hidden;
+}
+
+.result-display {
+  position: relative;
+  top: 85%;
+  left: 51%;
+  margin-bottom: 0px;
+  transform: translate(-50%, -50%);
+  font-family: monospace;
+  font-size: calc(100vh / 12);
+}
+
+.log-top,
+.log-bottom {
+  position: absolute;
+  width: calc(var(--block-size) * 3);
+  height: var(--block-size);
+  background-color: brown;
+}
+
+.log-middle {
+  position: absolute;
+  width: calc(var(--block-size) * 3);
+  height: var(--block-size);
+  background-color: maroon;
+}
+
+.water {
+  position: absolute;
+  width: calc(var(--block-size) * 2);
+  height: var(--block-size);
+  background-color: lightblue;
+}
+
+.road {
+  position: absolute;
+  width: var(--block-size);
+  height: var(--block-size);
+  background-color: lightgrey;
+}
+
+.car {
+  position: absolute;
+  width: var(--block-size);
+  height: var(--block-size);
+  background-color: rgb(100, 100, 100);
+}
+
+.ending-block {
+  position: absolute;
+  width: var(--block-size);
+  height: var(--block-size);
+  background-color: blue;
+}
+
+.frog {
+  position: absolute;
+  width: var(--block-size);
+  height: var(--block-size);
+  background-image: url(images/frog2.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 999;
+}

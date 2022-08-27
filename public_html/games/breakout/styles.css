@@ -1,0 +1,42 @@
+body {
+  background-color: rgb(40, 40, 104, 0.25);
+}
+
+#home-button:hover {
+  cursor: pointer;
+}
+
+.grid {
+  position: absolute;
+  width: 560px;
+  height: 300px;
+  border: solid black 1px;
+  margin-top: 100px;
+}
+
+.block {
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  background-color: blue;
+}
+
+.user {
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  background-color: purple;
+}
+
+.ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: red;
+}
+
+#score {
+  font-size: 1.5em;
+  font-weight: bold;
+}

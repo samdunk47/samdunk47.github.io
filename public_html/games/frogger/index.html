@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frogger</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" href="https://www.samchandler.co.uk/images/doge-image.png"/>
+  </head>
+  <body>
+    <h1 id="time-left-heading">
+      Seconds left: <br /><span id="time-left">20</span>
+    </h1>
+    <h1><span id="result"> </span></h1>
+
+    <h1 id="instructions-heading">
+      Buttons:
+    </h1>
+    <h2 id="instructions">
+      &#8226; W | Up Arrow<br /><br />
+      &#8226; S | Down Arrow<br /><br />
+      &#8226; A | Left Arrow<br /><br />
+      &#8226; D | Right Arrow<br /><br />
+    </h2>
+
+    <button id="start-pause-button">
+      <span id="start-pause-text">Start</span>
+    </button>
+
+    <div class="grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="ending-block"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="log-left l1"></div>
+      <div class="log-left l2"></div>
+      <div class="log-left l3"></div>
+      <div class="log-left l4"></div>
+      <div class="log-left l5"></div>
+      <div class="log-left l1"></div>
+      <div class="log-left l2"></div>
+      <div class="log-left l3"></div>
+      <div class="log-left l4"></div>
+      <div class="log-left l5"></div>
+      <div class="log-left l1"></div>
+      <div class="log-left l2"></div>
+      <div class="log-left l3"></div>
+      <div class="log-right-fast l4"></div>
+      <div class="log-right-fast l5"></div>
+      <div class="log-right-fast l1"></div>
+      <div class="log-right-fast l2"></div>
+      <div class="log-right-fast l3"></div>
+      <div class="log-right-fast l4"></div>
+      <div class="log-right-fast l5"></div>
+      <div class="log-right-fast l1"></div>
+      <div class="log-right-fast l2"></div>
+      <div class="log-right-fast l3"></div>
+      <div class="log-right-fast l4"></div>
+      <div class="log-right-fast l5"></div>
+      <div class="log-right-fast l1"></div>
+      <div class="log-right l2"></div>
+      <div class="log-right l3"></div>
+      <div class="log-right l4"></div>
+      <div class="log-right l5"></div>
+      <div class="log-right l1"></div>
+      <div class="log-right l2"></div>
+      <div class="log-right l3"></div>
+      <div class="log-right l4"></div>
+      <div class="log-right l5"></div>
+      <div class="log-right l1"></div>
+      <div class="log-right l2"></div>
+      <div class="log-right l3"></div>
+      <div class="log-right l4"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="car-left c1"></div>
+      <div class="car-left c2"></div>
+      <div class="car-left c3"></div>
+      <div class="car-left c1"></div>
+      <div class="car-left c2"></div>
+      <div class="car-left c3"></div>
+      <div class="car-left c1"></div>
+      <div class="car-left c2"></div>
+      <div class="car-left c3"></div>
+      <div class="car-left c1"></div>
+      <div class="car-left c2"></div>
+      <div class="car-left c3"></div>
+      <div class="car-left c1"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-left-fast c2"></div>
+      <div class="car-left-fast c3"></div>
+      <div class="car-left-fast c1"></div>
+      <div class="car-left-fast c2"></div>
+      <div class="car-left-fast c3"></div>
+      <div class="car-left-fast c1"></div>
+      <div class="car-left-fast c2"></div>
+      <div class="car-left-fast c3"></div>
+      <div class="car-left-fast c1"></div>
+      <div class="car-left-fast c2"></div>
+      <div class="car-left-fast c3"></div>
+      <div class="car-left-fast c1"></div>
+      <div class="car-left-fast c2"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-background"></div>
+      <div class="car-right c3"></div>
+      <div class="car-right c1"></div>
+      <div class="car-right c2"></div>
+      <div class="car-right c3"></div>
+      <div class="car-right c1"></div>
+      <div class="car-right c2"></div>
+      <div class="car-right c3"></div>
+      <div class="car-right c1"></div>
+      <div class="car-right c2"></div>
+      <div class="car-right c3"></div>
+      <div class="car-right c1"></div>
+      <div class="car-right c2"></div>
+      <div class="car-right c3"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="starting-block frog"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

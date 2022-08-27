@@ -1,0 +1,62 @@
+.grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  border: 1px solid black;
+  height: 720px;
+  width: 720px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid div {
+  height: 80px;
+  width: 80px;
+}
+
+.ending-block {
+  background-color: red;
+}
+
+.starting-block {
+  background-color: blue;
+}
+
+#start-pause-button {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 100px;
+}
+
+.l1, .l2, .l3 {
+  background-color: brown;
+}
+
+.l4, .l5 {
+  background-color: lightblue;
+}
+
+/*
+.log-left.l1, .log-left.l2, .log-left.l3 {
+  background-color: maroon;
+}
+*/
+
+.c1 {
+  background-color: black;
+}
+
+.c2, .c3 {
+  background-color: lightgrey;
+}
+
+.frog {
+  background-color: green;
+}
