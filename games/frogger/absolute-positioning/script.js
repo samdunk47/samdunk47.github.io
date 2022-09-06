@@ -401,6 +401,10 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.style.borderWidth = "10px";
     resultDisplay.textContent = "You Lost!";
     resultDisplay.style.color = "red";
+    const playAgain = document.createElement("div");
+    playAgain.classList.add("play-again");
+    document.body.appendChild(playAgain);
+    playAgain.textContent = "Play Again";
   }
 
   function nextLevel() {
@@ -444,10 +448,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (
         water.topLeft[0] + blockWidth + blockWidth / 2 > frogPosition[0] &&
         frogPosition[0] + blockWidth / 2 > water.topLeft[0] &&
-        frogPosition[1] > water.topLeft[1] &&
+        frogPosition[1] >= water.topLeft[1] - 2 &&
         frogPosition[1] < water.topLeft[1] + waterHeight - 2
       ) {
         lose();
+        
       }
     });
     cars.forEach((car) => {
