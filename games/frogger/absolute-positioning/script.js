@@ -444,8 +444,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (
         water.topLeft[0] + blockWidth + blockWidth / 2 > frogPosition[0] &&
         frogPosition[0] + blockWidth / 2 > water.topLeft[0] &&
-        frogPosition[1] >= water.topLeft[1] &&
-        frogPosition[1] < water.topLeft[1] + waterHeight
+        frogPosition[1] > water.topLeft[1] &&
+        frogPosition[1] < water.topLeft[1] + waterHeight - 2
       ) {
         lose();
       }

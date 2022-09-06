@@ -1,5 +1,5 @@
 html {
-  --block-size: calc(75vh / 10);
+  --block-size: calc(75vh / 13);
   width: 100vw;
   height: 100vh;
 }
