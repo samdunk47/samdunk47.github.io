@@ -31,6 +31,22 @@ body {
   font-size: calc(100vh / 12);
 }
 
+.play-again-display  {
+  position: relative;
+  top: -25%;
+  right: -50%;
+  margin-bottom: 0px;
+  transform: translate(-50%, -50%);
+  font-family: monospace;
+  font-size: calc(100vh / 17);
+  visibility: hidden;
+}
+
+.play-again-display:hover {
+  color: blue;
+  cursor: pointer;
+}
+
 .log-top,
 .log-bottom {
   position: absolute;
@@ -84,12 +100,3 @@ body {
   z-index: 999;
 }
 
-.play-again  {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  transform: translate(-10%, -50%);
-  font-family: monospace;
-  color: red;
-  z-index: 998 
-}

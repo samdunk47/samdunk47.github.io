@@ -7,6 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
   resultDisplay.classList.add("result-display");
   grid.appendChild(resultDisplay);
 
+  const playAgainDisplay = document.createElement("h2");
+  playAgainDisplay.classList.add("play-again-display");
+  grid.appendChild(playAgainDisplay);
+  playAgainDisplay.textContent = "Play Again";
+  playAgainDisplay.addEventListener("mouseup", () => {
+    location.reload();
+  })
+
   const frog = document.createElement("div");
   frog.classList.add("frog");
   grid.appendChild(frog);
@@ -388,23 +396,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.removeEventListener("keydown", moveFrog);
     grid.style.borderColor = "green";
     grid.style.borderWidth = "10px";
-    resultDisplay.textContent = "You Won!";
+    resultDisplay.textContent = "You Won";
     resultDisplay.style.color = "green";
   }
 
   function lose() {
+    playAgainDisplay.style.visibility = "inherit";
     clearInterval(timerId);
     clearInterval(timerId2);
     clearInterval(outcomeTimerId);
     document.removeEventListener("keydown", moveFrog);
     grid.style.borderColor = "red";
     grid.style.borderWidth = "10px";
-    resultDisplay.textContent = "You Lost!";
+    resultDisplay.textContent = "You Lost";
     resultDisplay.style.color = "red";
-    const playAgain = document.createElement("div");
-    playAgain.classList.add("play-again");
-    document.body.appendChild(playAgain);
-    playAgain.textContent = "Play Again";
   }
 
   function nextLevel() {
