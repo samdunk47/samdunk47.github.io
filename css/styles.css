@@ -1,0 +1,8 @@
+#board {
+    width: 600px;
+    height: 800px;
+    background-color: red;
+}
+#text {
+    font-size: 100px;
+}
