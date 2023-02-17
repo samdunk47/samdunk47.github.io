@@ -1,1 +1,8 @@
+.gitgnore
+
 /.vscode
+*.code-workspace
+
+node_modules
+
+.env.
