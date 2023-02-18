@@ -13,5 +13,7 @@
         "forceConsistentCasingInFileNames": true,
         "noEmitOnError": true,
         "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
     },
 }
