@@ -1,8 +1,7 @@
-.gitgnore
+.gitignore
 
 /.vscode
 *.code-workspace
-
 
 /node_modules
 
