@@ -10,4 +10,11 @@ for (let i = 0; i < 6; i++) {
         board.appendChild(cell);
     }
 }
+const findCell = (id) => {
+    let cellFound = document.getElementById(id);
+    return cellFound;
+};
+document.addEventListener("keydown", (event) => {
+    console.log(event);
+});
 //# sourceMappingURL=script.js.map
