@@ -1,21 +1,19 @@
 const board = document.getElementById("board");
-const cells: HTMLElement[] = [];
-
-for (let i = 0; i < 6; i++) {
-    for (let j = 0; j < 5; j++) {
-        let cell = document.createElement("div");
-        let cellID = "cell " + i.toString() + j.toString();
-        cell.className = cellID;
-        cells.push(cell);
-        board!.appendChild(cell);
-    }
-}
+let currentRow: number = 1;
 
 const findCell = (id: string) => {
-    let cellFound = document.getElementById(id);
+    let cellFound = document.getElementById("cell-" + id);
     return cellFound;
-}
+};
+
+const onEnterPress = () => {
+    
+};
+
+const onBackspacePress = () => {
+
+};
 
 document.addEventListener("keydown", (event) => {
     console.log(event);
-})
+});

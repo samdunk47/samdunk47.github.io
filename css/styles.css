@@ -27,7 +27,7 @@ body {
 
 #board {
     width: 290px;
-    height: 344px;
+    height: 348px;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
@@ -37,6 +37,19 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+.row {
+    border: 0;
+    margin: 0;
+    width: 300px;
+    height: 58px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
 }
 
 .cell {
