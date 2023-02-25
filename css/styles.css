@@ -1,4 +1,4 @@
-:root { 
+:root {
     --background: #121213;
     --text: #ffffff;
     --border: #3a3a3c;
@@ -6,6 +6,8 @@
     --correct: #538d4e;
     --present: #b59f3b;
     --absent: #3a3a3c;
+
+    --font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -14,7 +16,7 @@ body {
 
 #heading {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-family);
     font-size: 75px;
     color: var(--text);
     text-align: center;
@@ -49,7 +51,6 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-
 }
 
 .cell {
@@ -60,4 +61,17 @@ body {
     width: 50px;
     height: 50px;
     border: 2px var(--border) solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.letter {
+    margin: 0;
+    border: 0;
+    color: var(--text);
+    font-family: var(--font-family);
+    font-size: 40px;
+    font-weight: bold;
 }
