@@ -75,7 +75,7 @@ const updateCellNumber = (type: string) => {
         // add enter code 
     }
 };
-//:@samdunk47 hiya bro
+
 /*
 const checkEmptyCell = () => {
     const row = board!.getElementsByClassName(
