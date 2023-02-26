@@ -1,16 +1,17 @@
 "use strict";
 const board = document.getElementById("board");
-let currentRow = 1;
+let currentRowNum = 0;
+let currentCellNum = 0;
 const createCells = () => {
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 0; i <= 5; i++) {
         const row = document.createElement("div");
         row.className = "row " + i.toString();
-        for (let j = 1; j <= 5; j++) {
+        for (let j = 0; j <= 4; j++) {
             const cell = document.createElement("div");
             cell.className = "cell " + i.toString() + j.toString();
             const paragraph = document.createElement("p");
             paragraph.className = "letter";
-            paragraph.innerHTML = "A";
+            paragraph.innerHTML = "";
             cell.appendChild(paragraph);
             row.appendChild(cell);
         }
@@ -19,33 +20,81 @@ const createCells = () => {
 };
 createCells();
 const rows = document.querySelectorAll(".row");
-const findNextEmptyCellInRow = () => {
-    var _a;
-    for (let cell of (_a = rows[currentRow - 1]) === null || _a === void 0 ? void 0 : _a.children) {
-        const cellParagraph = cell.children[0];
-        const cellText = cellParagraph.innerHTML;
-        const cellId = cell.classList[1];
-        return cellId;
+/*
+const findNextEmptyCellInRow = (): string => {
+    for (let i = 0; i < 5; i++) {
+        const cell = rows[currentRow - 1].children[i];
+        // console.log(cell);
+        const cellParagraph: Element = cell.children[0];
+        const cellText: string = cellParagraph.innerHTML;
+        const cellId: string = cell.classList[1];
+        if (!cellText) {
+            return cellId;
+        }
     }
     return "";
 };
+*/
+const insertLetter = (letter) => {
+    const currentRow = rows[currentRowNum];
+    const currentCell = currentRow.children[currentCellNum];
+    const currentCellPara = currentCell.children[0];
+    if (!currentCellPara.innerHTML) {
+        currentCellPara.innerHTML = letter;
+    }
+};
 const onEnterPress = () => {
-    console.log("enter");
 };
 const onBackspacePress = () => {
-    console.log("backspace");
+};
+const updateCellNumber = (type) => {
+    /*
+    accepted inputs:
+    key: next cell, if space
+    back: previous cell, if space
+    enter: next row, first cell
+    */
+    if (type === "key" && currentCellNum <= 4) {
+        currentCellNum++;
+    }
+    else if (type === "back" && currentCellNum > 0) {
+        currentCellNum--;
+    }
+    else if (type === "enter") {
+        // add enter code 
+    }
+};
+//:@samdunk47 hiya bro
+/*
+const checkEmptyCell = () => {
+    const row = board!.getElementsByClassName(
+        "row " + currentRow.toString()
+    )[0];
+    console.log(row);
+};
+*/
+const checkIfSpace = () => {
+    return currentCellNum <= 4;
 };
 const onKeyPress = (letter) => {
     letter = letter.toUpperCase();
-    const emptyCellId = findNextEmptyCellInRow();
-    const emptyCell = document.getElementsByClassName(emptyCellId)[0];
+    const validSpace = checkIfSpace();
+    if (validSpace) {
+        insertLetter(letter);
+        updateCellNumber("key");
+    }
+    // const emptyCellId: string = findNextEmptyCellInRow();
+    // if
+    // const emptyCell = document.getElementsByClassName(emptyCellId)[0];
+    // insertLetter(emptyCell, letter);
 };
 document.addEventListener("keydown", (event) => {
+    console.log(event);
     let key = event.key;
-    if (key == "Enter") {
+    if (key === "Enter") {
         onEnterPress();
     }
-    else if (key == "Backspace") {
+    else if (key === "Backspace") {
         onBackspacePress();
     }
     else if (((key.charCodeAt(0) >= 97 && key.charCodeAt(0) <= 122) ||
