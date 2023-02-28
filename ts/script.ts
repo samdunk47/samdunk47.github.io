@@ -1,8 +1,11 @@
+import { testConst } from "./constants";
+console.log(testConst);
+
 const board = document.getElementById("board");
 let currentRowNum: number = 0;
 let currentCellNum: number = 0;
 
-const createCells = () => {
+const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
         const row = document.createElement("div");
         row.className = "row " + i.toString();
@@ -26,24 +29,29 @@ createCells();
 
 const rows = document.querySelectorAll(".row");
 
+const updateCellNumber = (type: string): void => {
+    /* 
+    accepted inputs: 
+    key: next cell, if space
+    back: previous cell, if space
+    enter: next row, first cell
+    */
 
-/*
-const findNextEmptyCellInRow = (): string => {
-    for (let i = 0; i < 5; i++) {
-        const cell = rows[currentRow - 1].children[i];
-        // console.log(cell);
-        const cellParagraph: Element = cell.children[0];
-        const cellText: string = cellParagraph.innerHTML;
-        const cellId: string = cell.classList[1];
-        if (!cellText) {
-            return cellId;
-        }
+    if (type === "key" && currentCellNum <= 4) {
+        currentCellNum++;
+    } else if (type === "back" && currentCellNum > 0) {
+        currentCellNum--;
+    } else if (type === "enter") {
+        currentCellNum = 0;
+        currentRowNum++;
     }
-    return "";
 };
-*/
 
-const insertLetter = (letter: string) => {
+const checkIfSpace = (): boolean => {
+    return currentCellNum <= 4;
+};
+
+const insertLetter = (letter: string): void => {
     const currentRow = rows[currentRowNum];
     const currentCell = currentRow.children[currentCellNum];
     const currentCellPara = currentCell.children[0];
@@ -52,59 +60,48 @@ const insertLetter = (letter: string) => {
     }
 };
 
-const onEnterPress = () => {
-};
-
-const onBackspacePress = () => {
-
-};
-
-const updateCellNumber = (type: string) => {
-    /* 
-    accepted inputs: 
-    key: next cell, if space
-    back: previous cell, if space
-    enter: next row, first cell
-    */
-
-    if (type === "key" && currentCellNum <= 4) { 
-        currentCellNum++;
-    } else if (type === "back" && currentCellNum > 0) {
-        currentCellNum--;
-    } else if (type === "enter") {
-        // add enter code 
+const deleteLetter = (): void => {
+    const currentRow = rows[currentRowNum];
+    const lastCell = currentRow.children[currentCellNum - 1];
+    const lastCellPara = lastCell.children[0];
+    if (lastCellPara.innerHTML) {
+        lastCellPara.innerHTML = "";
     }
 };
 
-/*
-const checkEmptyCell = () => {
-    const row = board!.getElementsByClassName(
-        "row " + currentRow.toString()
-    )[0];
-    console.log(row);
+const checkWin = () => {};
+
+const checkLetters = () => {};
+
+const onEnterPress = (): void => {
+    if (currentCellNum === 5) {
+        checkLetters();
+        if (currentRowNum === 6) {
+            checkWin();
+        }
+        updateCellNumber("enter");
+    }
 };
-*/
 
-const checkIfSpace = (): boolean => {
-    return currentCellNum <= 4;
-}
+const onBackspacePress = (): void => {
+    if (currentCellNum > 0) {
+        deleteLetter();
+        updateCellNumber("back");
+    }
+};
 
-const onKeyPress = (letter: string) => {
+const onKeyPress = (letter: string): void => {
     letter = letter.toUpperCase();
     const validSpace = checkIfSpace();
-    if (validSpace) { 
+    if (validSpace) {
         insertLetter(letter);
         updateCellNumber("key");
     }
-
-    // const emptyCellId: string = findNextEmptyCellInRow();
-    // if
-    // const emptyCell = document.getElementsByClassName(emptyCellId)[0];
-    // insertLetter(emptyCell, letter);
 };
 
 document.addEventListener("keydown", (event) => {
     console.log(event);
+    console.log(currentCellNum, currentRowNum);
 
     let key: string = event.key;
 

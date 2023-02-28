@@ -1,4 +1,5 @@
-"use strict";
+import { testConst } from "./constants";
+console.log(testConst);
 const board = document.getElementById("board");
 let currentRowNum = 0;
 let currentCellNum = 0;
@@ -20,33 +21,6 @@ const createCells = () => {
 };
 createCells();
 const rows = document.querySelectorAll(".row");
-/*
-const findNextEmptyCellInRow = (): string => {
-    for (let i = 0; i < 5; i++) {
-        const cell = rows[currentRow - 1].children[i];
-        // console.log(cell);
-        const cellParagraph: Element = cell.children[0];
-        const cellText: string = cellParagraph.innerHTML;
-        const cellId: string = cell.classList[1];
-        if (!cellText) {
-            return cellId;
-        }
-    }
-    return "";
-};
-*/
-const insertLetter = (letter) => {
-    const currentRow = rows[currentRowNum];
-    const currentCell = currentRow.children[currentCellNum];
-    const currentCellPara = currentCell.children[0];
-    if (!currentCellPara.innerHTML) {
-        currentCellPara.innerHTML = letter;
-    }
-};
-const onEnterPress = () => {
-};
-const onBackspacePress = () => {
-};
 const updateCellNumber = (type) => {
     /*
     accepted inputs:
@@ -61,19 +35,45 @@ const updateCellNumber = (type) => {
         currentCellNum--;
     }
     else if (type === "enter") {
-        // add enter code 
+        currentCellNum = 0;
+        currentRowNum++;
     }
 };
-/*
-const checkEmptyCell = () => {
-    const row = board!.getElementsByClassName(
-        "row " + currentRow.toString()
-    )[0];
-    console.log(row);
-};
-*/
 const checkIfSpace = () => {
     return currentCellNum <= 4;
+};
+const insertLetter = (letter) => {
+    const currentRow = rows[currentRowNum];
+    const currentCell = currentRow.children[currentCellNum];
+    const currentCellPara = currentCell.children[0];
+    if (!currentCellPara.innerHTML) {
+        currentCellPara.innerHTML = letter;
+    }
+};
+const deleteLetter = () => {
+    const currentRow = rows[currentRowNum];
+    const lastCell = currentRow.children[currentCellNum - 1];
+    const lastCellPara = lastCell.children[0];
+    if (lastCellPara.innerHTML) {
+        lastCellPara.innerHTML = "";
+    }
+};
+const checkWin = () => { };
+const checkLetters = () => { };
+const onEnterPress = () => {
+    if (currentCellNum === 5) {
+        checkLetters();
+        if (currentRowNum === 6) {
+            checkWin();
+        }
+        updateCellNumber("enter");
+    }
+};
+const onBackspacePress = () => {
+    if (currentCellNum > 0) {
+        deleteLetter();
+        updateCellNumber("back");
+    }
 };
 const onKeyPress = (letter) => {
     letter = letter.toUpperCase();
@@ -82,13 +82,10 @@ const onKeyPress = (letter) => {
         insertLetter(letter);
         updateCellNumber("key");
     }
-    // const emptyCellId: string = findNextEmptyCellInRow();
-    // if
-    // const emptyCell = document.getElementsByClassName(emptyCellId)[0];
-    // insertLetter(emptyCell, letter);
 };
 document.addEventListener("keydown", (event) => {
     console.log(event);
+    console.log(currentCellNum, currentRowNum);
     let key = event.key;
     if (key === "Enter") {
         onEnterPress();
@@ -102,4 +99,3 @@ document.addEventListener("keydown", (event) => {
         onKeyPress(key);
     }
 });
-//# sourceMappingURL=script.js.map
