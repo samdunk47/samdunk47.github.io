@@ -1,5 +1,4 @@
-import { testConst } from "./constants";
-console.log(testConst);
+import { allWords, allAnswerWords } from "./constants.js";
 
 const board = document.getElementById("board");
 let currentRowNum: number = 0;

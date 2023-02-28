@@ -1,5 +1,5 @@
-import { testConst } from "./constants";
-console.log(testConst);
+import { allWords } from "./constants.js";
+console.log(allWords);
 const board = document.getElementById("board");
 let currentRowNum = 0;
 let currentCellNum = 0;
@@ -99,3 +99,4 @@ document.addEventListener("keydown", (event) => {
         onKeyPress(key);
     }
 });
+//# sourceMappingURL=script.js.map
