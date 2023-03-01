@@ -3,6 +3,7 @@ import { allWords, allAnswerWords } from "./constants.js";
 const board = document.getElementById("board");
 let currentRowNum: number = 0;
 let currentCellNum: number = 0;
+let currentRow: Element;
 
 const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
@@ -28,6 +29,14 @@ createCells();
 
 const rows = document.querySelectorAll(".row");
 
+const checkValidWord = (word: string): boolean => {
+    return word in allWords;
+}
+
+const checkValidAnswerWord = (word: string): boolean => {
+    return word in allAnswerWords;
+}
+
 const updateCellNumber = (type: string): void => {
     /* 
     accepted inputs: 
@@ -51,22 +60,31 @@ const checkIfSpace = (): boolean => {
 };
 
 const insertLetter = (letter: string): void => {
-    const currentRow = rows[currentRowNum];
-    const currentCell = currentRow.children[currentCellNum];
+    const currentCell = currentRow?.children[currentCellNum];
+    "asjoeijfopiasejfopiasejfpoasiejfpoaieuwpqoirupqoiwuerpoiqwuerpoqwiruoiwe";
     const currentCellPara = currentCell.children[0];
     if (!currentCellPara.innerHTML) {
         currentCellPara.innerHTML = letter;
     }
 };
 
-const deleteLetter = (): void => {
-    const currentRow = rows[currentRowNum];
-    const lastCell = currentRow.children[currentCellNum - 1];
+const deleteRecentLetter = (): void => {
+    const lastCell = currentRow?.children[currentCellNum - 1];
     const lastCellPara = lastCell.children[0];
     if (lastCellPara.innerHTML) {
         lastCellPara.innerHTML = "";
     }
 };
+
+const findCurrentWord = (): string => {
+    let word: string = ""
+    for (let cell of currentRow.children) {
+        const cellPara = cell.children[0];
+        word += cellPara.innerHTML;
+    }
+    console.log(word);
+    return word;
+}
 
 const checkWin = () => {};
 
@@ -84,7 +102,7 @@ const onEnterPress = (): void => {
 
 const onBackspacePress = (): void => {
     if (currentCellNum > 0) {
-        deleteLetter();
+        deleteRecentLetter();
         updateCellNumber("back");
     }
 };
@@ -101,6 +119,8 @@ const onKeyPress = (letter: string): void => {
 document.addEventListener("keydown", (event) => {
     console.log(event);
     console.log(currentCellNum, currentRowNum);
+    
+    currentRow = rows[currentRowNum];
 
     let key: string = event.key;
 
