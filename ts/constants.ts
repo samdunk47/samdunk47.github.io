@@ -1,4 +1,4 @@
-export const allWords: string[] = [
+export const allWordsExceptAnswers: string[] = [
     "aahed",
     "aalii",
     "aapas",

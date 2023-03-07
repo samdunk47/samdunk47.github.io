@@ -75,3 +75,15 @@ body {
     font-size: 40px;
     font-weight: bold;
 }
+
+.correct {
+    background-color: var(--correct);
+}
+
+.present {
+    background-color: var(--present);
+}
+
+.absent {
+    background-color: var(--absent);
+}

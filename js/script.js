@@ -1,4 +1,5 @@
-import { allWords, allAnswerWords } from "./constants.js";
+import { allWordsExceptAnswers, allAnswerWords } from "./constants.js";
+const allWords = allWordsExceptAnswers.concat(allAnswerWords);
 const board = document.getElementById("board");
 let currentRowNum = 0;
 let currentCellNum = 0;
@@ -22,10 +23,10 @@ const createCells = () => {
 createCells();
 const rows = document.querySelectorAll(".row");
 const checkValidWord = (word) => {
-    return word in allWords;
+    return allWords.includes(word.toLowerCase());
 };
 const checkValidAnswerWord = (word) => {
-    return word in allAnswerWords;
+    return allAnswerWords.includes(word.toLowerCase());
 };
 const updateCellNumber = (type) => {
     /*
@@ -50,7 +51,6 @@ const checkIfSpace = () => {
 };
 const insertLetter = (letter) => {
     const currentCell = currentRow === null || currentRow === void 0 ? void 0 : currentRow.children[currentCellNum];
-    "asjoeijfopiasejfopiasejfpoasiejfpoaieuwpqoirupqoiwuerpoiqwuerpoqwiruoiwe";
     const currentCellPara = currentCell.children[0];
     if (!currentCellPara.innerHTML) {
         currentCellPara.innerHTML = letter;
@@ -75,7 +75,9 @@ const findCurrentWord = () => {
 const checkWin = () => { };
 const checkLetters = () => { };
 const onEnterPress = () => {
-    if (currentCellNum === 5) {
+    const currentWord = findCurrentWord();
+    const validWord = checkValidWord(currentWord);
+    if (currentCellNum === 5 && validWord) {
         checkLetters();
         if (currentRowNum === 6) {
             checkWin();
@@ -98,8 +100,6 @@ const onKeyPress = (letter) => {
     }
 };
 document.addEventListener("keydown", (event) => {
-    console.log(event);
-    console.log(currentCellNum, currentRowNum);
     currentRow = rows[currentRowNum];
     let key = event.key;
     if (key === "Enter") {
