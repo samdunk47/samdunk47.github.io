@@ -22,6 +22,13 @@ const createCells = () => {
 };
 createCells();
 const rows = document.querySelectorAll(".row");
+const createAnswerWord = () => {
+    const answersLength = allAnswerWords.length;
+    const randomNumber = Math.floor(Math.random() * (answersLength + 1));
+    const answerWord = allAnswerWords[randomNumber].toUpperCase();
+    console.log(answerWord);
+};
+createAnswerWord();
 const checkValidWord = (word) => {
     return allWords.includes(word.toLowerCase());
 };
@@ -69,19 +76,19 @@ const findCurrentWord = () => {
         const cellPara = cell.children[0];
         word += cellPara.innerHTML;
     }
-    console.log(word);
     return word;
 };
-const checkWin = () => { };
-const checkLetters = () => { };
+const checkWin = () => {
+    const currentWord = findCurrentWord();
+};
+const checkLetters = () => {
+    checkWin();
+};
 const onEnterPress = () => {
     const currentWord = findCurrentWord();
     const validWord = checkValidWord(currentWord);
     if (currentCellNum === 5 && validWord) {
         checkLetters();
-        if (currentRowNum === 6) {
-            checkWin();
-        }
         updateCellNumber("enter");
     }
 };

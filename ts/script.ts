@@ -1,11 +1,14 @@
 import { allWordsExceptAnswers, allAnswerWords } from "./constants.js";
 
 const allWords: string[] = allWordsExceptAnswers.concat(allAnswerWords);
+const answersLength: number = allAnswerWords.length;
 
 const board = document.getElementById("board");
 let currentRowNum: number = 0;
 let currentCellNum: number = 0;
 let currentRow: Element;
+let answerWord: string;
+let randomNumber: number;
 
 const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
@@ -31,13 +34,20 @@ createCells();
 
 const rows = document.querySelectorAll(".row");
 
+const createAnswerWord = (): void => {
+    randomNumber = Math.floor(Math.random() * (answersLength + 1));
+    answerWord = allAnswerWords[randomNumber].toUpperCase();
+};
+
+createAnswerWord();
+
 const checkValidWord = (word: string): boolean => {
     return allWords.includes(word.toLowerCase());
-}
+};
 
 const checkValidAnswerWord = (word: string): boolean => {
     return allAnswerWords.includes(word.toLowerCase());
-}
+};
 
 const updateCellNumber = (type: string): void => {
     /* 
@@ -78,27 +88,36 @@ const deleteRecentLetter = (): void => {
 };
 
 const findCurrentWord = (): string => {
-    let word: string = ""
+    let word: string = "";
     for (let cell of currentRow.children) {
         const cellPara = cell.children[0];
         word += cellPara.innerHTML;
     }
-    console.log(word);
     return word;
-}
+};
 
-const checkWin = () => {};
+const win = () => {};
 
-const checkLetters = () => {};
+const lose = () => {};
+
+const checkWin = () => {
+    const currentWord: string = findCurrentWord();
+    if (currentWord === answerWord) {
+        win();
+    }
+};
+
+const checkLetters = () => {
+    
+    checkWin();
+};
 
 const onEnterPress = (): void => {
-    const currentWord: string = findCurrentWord()
+    const currentWord: string = findCurrentWord();
     const validWord: boolean = checkValidWord(currentWord);
     if (currentCellNum === 5 && validWord) {
         checkLetters();
-        if (currentRowNum === 6) {
-            checkWin();
-        }
+
         updateCellNumber("enter");
     }
 };
