@@ -8,7 +8,9 @@ let currentRowNum: number = 0;
 let currentCellNum: number = 0;
 let currentRow: Element;
 let answerWord: string;
+let answerWordArray: string[] = [];
 let randomNumber: number;
+let currentWord: string;
 
 const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
@@ -37,6 +39,10 @@ const rows = document.querySelectorAll(".row");
 const createAnswerWord = (): void => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
     answerWord = allAnswerWords[randomNumber].toUpperCase();
+    for (let letter of answerWord) {
+        answerWordArray.push(letter);
+    }
+    console.log(answerWordArray);
 };
 
 createAnswerWord();
@@ -96,24 +102,34 @@ const findCurrentWord = (): string => {
     return word;
 };
 
+
 const win = () => {};
 
 const lose = () => {};
 
+const updateCurrentWord = () => {
+    currentWord = findCurrentWord();
+}
+
 const checkWin = () => {
-    const currentWord: string = findCurrentWord();
     if (currentWord === answerWord) {
         win();
     }
 };
 
 const checkLetters = () => {
+    for (let i = 0; i < currentWord.length; i++) {
+        const currentWordLetter = currentWord[i];
+        const answerWordLetter = answerWordArray[i];
+        
+
+
+    }    
     
     checkWin();
 };
 
 const onEnterPress = (): void => {
-    const currentWord: string = findCurrentWord();
     const validWord: boolean = checkValidWord(currentWord);
     if (currentCellNum === 5 && validWord) {
         checkLetters();
@@ -140,18 +156,21 @@ const onKeyPress = (letter: string): void => {
 
 document.addEventListener("keydown", (event) => {
     currentRow = rows[currentRowNum];
-
+    
     let key: string = event.key;
-
+    
     if (key === "Enter") {
         onEnterPress();
     } else if (key === "Backspace") {
         onBackspacePress();
     } else if (
         ((key.charCodeAt(0) >= 97 && key.charCodeAt(0) <= 122) ||
-            (key.charCodeAt(0) >= 65 && key.charCodeAt(0) <= 90)) &&
+        (key.charCodeAt(0) >= 65 && key.charCodeAt(0) <= 90)) &&
         key.length === 1
-    ) {
-        onKeyPress(key);
-    }
+        ) {
+            onKeyPress(key);
+        }
+        
+    updateCurrentWord();
+    console.log(currentWord);
 });

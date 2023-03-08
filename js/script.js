@@ -6,7 +6,9 @@ let currentRowNum = 0;
 let currentCellNum = 0;
 let currentRow;
 let answerWord;
+let answerWordArray = [];
 let randomNumber;
+let currentWord;
 const createCells = () => {
     for (let i = 0; i <= 5; i++) {
         const row = document.createElement("div");
@@ -28,6 +30,10 @@ const rows = document.querySelectorAll(".row");
 const createAnswerWord = () => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
     answerWord = allAnswerWords[randomNumber].toUpperCase();
+    for (let letter of answerWord) {
+        answerWordArray.push(letter);
+    }
+    console.log(answerWordArray);
 };
 createAnswerWord();
 const checkValidWord = (word) => {
@@ -81,17 +87,22 @@ const findCurrentWord = () => {
 };
 const win = () => { };
 const lose = () => { };
+const updateCurrentWord = () => {
+    currentWord = findCurrentWord();
+};
 const checkWin = () => {
-    const currentWord = findCurrentWord();
     if (currentWord === answerWord) {
         win();
     }
 };
 const checkLetters = () => {
+    for (let i = 0; i < currentWord.length; i++) {
+        const currentWordLetter = currentWord[i];
+        const answerWordLetter = answerWordArray[i];
+    }
     checkWin();
 };
 const onEnterPress = () => {
-    const currentWord = findCurrentWord();
     const validWord = checkValidWord(currentWord);
     if (currentCellNum === 5 && validWord) {
         checkLetters();
@@ -126,5 +137,7 @@ document.addEventListener("keydown", (event) => {
         key.length === 1) {
         onKeyPress(key);
     }
+    updateCurrentWord();
+    console.log(currentWord);
 });
 //# sourceMappingURL=script.js.map
