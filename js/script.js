@@ -1,9 +1,12 @@
 import { allWordsExceptAnswers, allAnswerWords } from "./constants.js";
 const allWords = allWordsExceptAnswers.concat(allAnswerWords);
+const answersLength = allAnswerWords.length;
 const board = document.getElementById("board");
 let currentRowNum = 0;
 let currentCellNum = 0;
 let currentRow;
+let answerWord;
+let randomNumber;
 const createCells = () => {
     for (let i = 0; i <= 5; i++) {
         const row = document.createElement("div");
@@ -23,10 +26,8 @@ const createCells = () => {
 createCells();
 const rows = document.querySelectorAll(".row");
 const createAnswerWord = () => {
-    const answersLength = allAnswerWords.length;
-    const randomNumber = Math.floor(Math.random() * (answersLength + 1));
-    const answerWord = allAnswerWords[randomNumber].toUpperCase();
-    console.log(answerWord);
+    randomNumber = Math.floor(Math.random() * (answersLength + 1));
+    answerWord = allAnswerWords[randomNumber].toUpperCase();
 };
 createAnswerWord();
 const checkValidWord = (word) => {
@@ -78,8 +79,13 @@ const findCurrentWord = () => {
     }
     return word;
 };
+const win = () => { };
+const lose = () => { };
 const checkWin = () => {
     const currentWord = findCurrentWord();
+    if (currentWord === answerWord) {
+        win();
+    }
 };
 const checkLetters = () => {
     checkWin();
