@@ -4,13 +4,13 @@ const allWords: string[] = allWordsExceptAnswers.concat(allAnswerWords);
 const answersLength: number = allAnswerWords.length;
 
 const board = document.getElementById("board");
-let currentRowNum: number = 0;
-let currentCellNum: number = 0;
+let currentRowIndex: number = 0;
+let currentCellIndex: number = 0;
 let currentRow: Element;
 let answerWord: string;
-let answerWordArray: string[] = [];
 let randomNumber: number;
 let currentWord: string;
+const possibleStates: string[] = ["correct", "present", "unused"]
 
 const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
@@ -39,10 +39,7 @@ const rows = document.querySelectorAll(".row");
 const createAnswerWord = (): void => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
     answerWord = allAnswerWords[randomNumber].toUpperCase();
-    for (let letter of answerWord) {
-        answerWordArray.push(letter);
-    }
-    console.log(answerWordArray);
+    console.log("answer: ", answerWord);
 };
 
 createAnswerWord();
@@ -63,22 +60,22 @@ const updateCellNumber = (type: string): void => {
     enter: next row, first cell
     */
 
-    if (type === "key" && currentCellNum <= 4) {
-        currentCellNum++;
-    } else if (type === "back" && currentCellNum > 0) {
-        currentCellNum--;
+    if (type === "key" && currentCellIndex <= 4) {
+        currentCellIndex++;
+    } else if (type === "back" && currentCellIndex > 0) {
+        currentCellIndex--;
     } else if (type === "enter") {
-        currentCellNum = 0;
-        currentRowNum++;
+        currentCellIndex = 0;
+        currentRowIndex++;
     }
 };
 
 const checkIfSpace = (): boolean => {
-    return currentCellNum <= 4;
+    return currentCellIndex <= 4;
 };
 
 const insertLetter = (letter: string): void => {
-    const currentCell = currentRow?.children[currentCellNum];
+    const currentCell = currentRow?.children[currentCellIndex];
     const currentCellPara = currentCell.children[0];
     if (!currentCellPara.innerHTML) {
         currentCellPara.innerHTML = letter;
@@ -86,7 +83,7 @@ const insertLetter = (letter: string): void => {
 };
 
 const deleteRecentLetter = (): void => {
-    const lastCell = currentRow?.children[currentCellNum - 1];
+    const lastCell = currentRow?.children[currentCellIndex - 1];
     const lastCellPara = lastCell.children[0];
     if (lastCellPara.innerHTML) {
         lastCellPara.innerHTML = "";
@@ -117,21 +114,45 @@ const checkWin = () => {
     }
 };
 
-const checkLetters = () => {
-    for (let i = 0; i < currentWord.length; i++) {
-        const currentWordLetter = currentWord[i];
-        const answerWordLetter = answerWordArray[i];
-        
-
-
-    }    
+const changeColourOfCell = (cellPosition: number, state: string) => {
+    const cell = currentRow.children[cellPosition];
+    if (possibleStates.includes(state)) {
+        cell.classList.add(state);
+    }
     
+}
+
+const checkLetters = () => {
+    let currentWordArray: string[] = currentWord.split("");
+    let answerWordArray: string[] = answerWord.split("");
+
+    for (let i = 0; i < 5; i++) {
+        const currentWordLetter = currentWordArray[i];
+        const answerWordLetter = answerWordArray[i];
+
+        if (currentWordLetter === answerWordLetter) { 
+            changeColourOfCell(i, "correct")
+            currentWordArray[i] = "";
+            answerWordArray[i] = "";
+        } 
+    }
+
+    for (let i = 0; i < 5; i++) {
+        const answerWordLetter = answerWordArray[i];
+        if (currentWordArray.includes(answerWordLetter)) {
+            const indexOfLetter = currentWordArray.indexOf(answerWordLetter)
+            changeColourOfCell(indexOfLetter, "present")
+            currentWordArray[indexOfLetter] = ""
+            answerWordArray[i] = "";
+        }
+    }
+
     checkWin();
 };
 
 const onEnterPress = (): void => {
     const validWord: boolean = checkValidWord(currentWord);
-    if (currentCellNum === 5 && validWord) {
+    if (currentCellIndex === 5 && validWord) {
         checkLetters();
 
         updateCellNumber("enter");
@@ -139,7 +160,7 @@ const onEnterPress = (): void => {
 };
 
 const onBackspacePress = (): void => {
-    if (currentCellNum > 0) {
+    if (currentCellIndex > 0) {
         deleteRecentLetter();
         updateCellNumber("back");
     }
@@ -155,7 +176,7 @@ const onKeyPress = (letter: string): void => {
 };
 
 document.addEventListener("keydown", (event) => {
-    currentRow = rows[currentRowNum];
+    currentRow = rows[currentRowIndex];
     
     let key: string = event.key;
     
@@ -172,5 +193,4 @@ document.addEventListener("keydown", (event) => {
         }
         
     updateCurrentWord();
-    console.log(currentWord);
 });
