@@ -1,3 +1,4 @@
-# About
-This is a wordle game made with HTML, CSS and TypeScript
-By Sam Chandler
+# TypeScript Wordle
+A replica of the NYTimes wordle game, recreated with TypeScript, HTML and CSS
+
+## Playing
