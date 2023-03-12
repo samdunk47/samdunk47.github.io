@@ -1,6 +1,6 @@
 :root {
     --background: #121213;
-    --background2: rgb(9, 9, 9, 0.5);
+    --background2: rgb(0, 0, 0, 0.5);
     --background3: #787c7e;
     --background4: #878a8c;
     --text: #ffffff;
@@ -36,7 +36,8 @@ body {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    top: clamp(calc(40% - 50px), 40%, 100px);
+    top: clamp(calc(40% - 175px), 100px, 100px);
+    margin-top: 125px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -47,21 +48,22 @@ body {
 #popup {
     background-color: var(--background2);
     width: 350px;
-    height: 475px;
+    height: 100px;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    top: clamp(calc(40% - 150px), 40%, 100px);
+    top: clamp(calc(40% - 175px), 100px, 100px);
     border-radius: 25px;
     display: none;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: center;
 }
 
 #result-text {
     padding: 0;
     margin: 0;
-    margin-top: 10px;
+    margin-top: 500px;
     font-family: var(--font-family);
     color: var(--text);
     font-size: 65px;
