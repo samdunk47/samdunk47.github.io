@@ -34,7 +34,6 @@ const rows = document.querySelectorAll(".row");
 const createAnswerWord = () => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
     answerWord = allAnswerWords[randomNumber].toUpperCase();
-    console.log("answer: ", answerWord);
 };
 createAnswerWord();
 const checkValidWord = (word) => {
@@ -104,7 +103,6 @@ const lose = () => {
     resultValue.style.color = "#d3494e";
 };
 const playAgain = () => {
-    console.log("yas");
     location.reload();
 };
 const updateCurrentWord = () => {

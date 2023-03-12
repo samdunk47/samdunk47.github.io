@@ -43,7 +43,6 @@ const rows = document.querySelectorAll(".row");
 const createAnswerWord = (): void => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
     answerWord = allAnswerWords[randomNumber].toUpperCase();
-    console.log("answer: ", answerWord);
 };
 
 createAnswerWord();
@@ -124,7 +123,6 @@ const lose = () => {
 };
 
 const playAgain = (): void => {
-    console.log("yas");
     location.reload();
 };
 
