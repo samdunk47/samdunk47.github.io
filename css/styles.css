@@ -1,5 +1,8 @@
 :root {
     --background: #121213;
+    --background2: rgb(9, 9, 9, 0.5);
+    --background3: #787c7e;
+    --background4: #878a8c;
     --text: #ffffff;
     --border: #3a3a3c;
 
@@ -33,12 +36,72 @@ body {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    top: clamp(calc(50% - 150px), 50%, 100px);
+    top: clamp(calc(40% - 50px), 40%, 100px);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+#popup {
+    background-color: var(--background2);
+    width: 350px;
+    height: 475px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: clamp(calc(40% - 150px), 40%, 100px);
+    border-radius: 25px;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#result-text {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    font-family: var(--font-family);
+    color: var(--text);
+    font-size: 65px;
+}
+
+#play-again-button {
+    padding: 0;
+    margin: 0;
+    margin-top: 410px;
+    background-color: var(--background4);
+    width: 250px;
+    height: 90px;
+    border: 0;
+    border-radius: 15px;
+}
+
+#play-again-button:hover {
+    cursor: pointer;
+    background-color: var(--background3);
+}
+
+#play-again-text {
+    color: var(--text);
+    font-family: var(--font-family);
+    font-size: 40px;
+    font-weight: 750;
+}
+
+
+.fade-in {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .row {
@@ -64,7 +127,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .letter {
@@ -78,12 +140,19 @@ body {
 
 .correct {
     background-color: var(--correct);
+    border-color: var(--correct);
 }
 
 .present {
     background-color: var(--present);
+    border-color: var(--present);
 }
 
 .absent {
     background-color: var(--absent);
+    border-color: var(--absent);
 }
+
+/* .darker-span {
+    filter: brightness(50%);
+} */

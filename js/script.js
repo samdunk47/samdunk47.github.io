@@ -1,14 +1,18 @@
 import { allWordsExceptAnswers, allAnswerWords } from "./constants.js";
+const board = document.getElementById("board");
+const popup = document.getElementById("popup");
+const resultText = document.getElementById("result-text");
+const resultValue = document.getElementById("result-value");
+const playAgainButton = document.getElementById("play-again-button");
 const allWords = allWordsExceptAnswers.concat(allAnswerWords);
 const answersLength = allAnswerWords.length;
-const board = document.getElementById("board");
 let currentRowIndex = 0;
 let currentCellIndex = 0;
 let currentRow;
 let answerWord;
 let randomNumber;
 let currentWord;
-const possibleStates = ["correct", "present", "unused"];
+const possibleStates = ["correct", "present", "absent"];
 const createCells = () => {
     for (let i = 0; i <= 5; i++) {
         const row = document.createElement("div");
@@ -82,19 +86,46 @@ const findCurrentWord = () => {
     }
     return word;
 };
-const win = () => { };
-const lose = () => { };
+const enablePopup = () => {
+    document.removeEventListener("keydown", gameLoop);
+    setTimeout(() => {
+        popup.style.display = "flex";
+    }, 250);
+    playAgainButton.addEventListener("click", playAgain);
+};
+const win = () => {
+    enablePopup();
+    resultValue.innerHTML = "Win!";
+    resultValue.style.color = "#7bb274";
+};
+const lose = () => {
+    enablePopup();
+    resultValue.innerHTML = "Lose!";
+    resultValue.style.color = "#d3494e";
+};
+const playAgain = () => {
+    console.log("yas");
+    location.reload();
+};
 const updateCurrentWord = () => {
     currentWord = findCurrentWord();
 };
 const checkWin = () => {
     if (currentWord === answerWord) {
         win();
+        return true;
     }
+    return false;
 };
 const changeColourOfCell = (cellPosition, state) => {
     const cell = currentRow.children[cellPosition];
-    if (possibleStates.includes(state)) {
+    let alreadyContainsState = false;
+    for (let state of possibleStates) {
+        if (cell.classList.contains(state)) {
+            alreadyContainsState = true;
+        }
+    }
+    if (possibleStates.includes(state) && !alreadyContainsState) {
         cell.classList.add(state);
     }
 };
@@ -117,6 +148,13 @@ const checkLetters = () => {
             changeColourOfCell(indexOfLetter, "present");
             currentWordArray[indexOfLetter] = "";
             answerWordArray[i] = "";
+        }
+    }
+    for (let i = 0; i < 5; i++) {
+        const currentWordLetter = currentWordArray[i];
+        if (currentWordLetter) {
+            changeColourOfCell(i, "absent");
+            currentWordArray[i] = "";
         }
     }
     checkWin();
@@ -142,7 +180,7 @@ const onKeyPress = (letter) => {
         updateCellNumber("key");
     }
 };
-document.addEventListener("keydown", (event) => {
+const gameLoop = (event) => {
     currentRow = rows[currentRowIndex];
     let key = event.key;
     if (key === "Enter") {
@@ -157,5 +195,12 @@ document.addEventListener("keydown", (event) => {
         onKeyPress(key);
     }
     updateCurrentWord();
-});
+    if (currentRowIndex >= 6) {
+        if (checkWin()) {
+            return;
+        }
+        lose();
+    }
+};
+document.addEventListener("keydown", gameLoop);
 //# sourceMappingURL=script.js.map

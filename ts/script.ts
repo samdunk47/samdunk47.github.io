@@ -1,16 +1,20 @@
 import { allWordsExceptAnswers, allAnswerWords } from "./constants.js";
 
+const board = document.getElementById("board");
+const popup = document.getElementById("popup");
+const resultText = document.getElementById("result-text");
+const resultValue = document.getElementById("result-value");
+const playAgainButton = document.getElementById("play-again-button");
+
 const allWords: string[] = allWordsExceptAnswers.concat(allAnswerWords);
 const answersLength: number = allAnswerWords.length;
-
-const board = document.getElementById("board");
 let currentRowIndex: number = 0;
 let currentCellIndex: number = 0;
 let currentRow: Element;
 let answerWord: string;
 let randomNumber: number;
 let currentWord: string;
-const possibleStates: string[] = ["correct", "present", "unused"]
+const possibleStates: string[] = ["correct", "present", "absent"];
 
 const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
@@ -99,28 +103,55 @@ const findCurrentWord = (): string => {
     return word;
 };
 
+const enablePopup = () => {
+    document.removeEventListener("keydown", gameLoop);
+    setTimeout(() => {
+        popup!.style.display = "flex";
+    }, 250);
+    playAgainButton!.addEventListener("click", playAgain);
+};
 
-const win = () => {};
+const win = () => {
+    enablePopup();
+    resultValue!.innerHTML = "Win!";
+    resultValue!.style.color = "#7bb274";
+};
 
-const lose = () => {};
+const lose = () => {
+    enablePopup();
+    resultValue!.innerHTML = "Lose!";
+    resultValue!.style.color = "#d3494e";
+};
+
+const playAgain = (): void => {
+    console.log("yas");
+    location.reload();
+};
 
 const updateCurrentWord = () => {
     currentWord = findCurrentWord();
-}
+};
 
-const checkWin = () => {
+const checkWin = (): boolean => {
     if (currentWord === answerWord) {
         win();
+        return true;
     }
+    return false;
 };
 
 const changeColourOfCell = (cellPosition: number, state: string) => {
     const cell = currentRow.children[cellPosition];
-    if (possibleStates.includes(state)) {
+    let alreadyContainsState: boolean = false;
+    for (let state of possibleStates) {
+        if (cell.classList.contains(state)) {
+            alreadyContainsState = true;
+        }
+    }
+    if (possibleStates.includes(state) && !alreadyContainsState) {
         cell.classList.add(state);
     }
-    
-}
+};
 
 const checkLetters = () => {
     let currentWordArray: string[] = currentWord.split("");
@@ -130,20 +161,30 @@ const checkLetters = () => {
         const currentWordLetter = currentWordArray[i];
         const answerWordLetter = answerWordArray[i];
 
-        if (currentWordLetter === answerWordLetter) { 
-            changeColourOfCell(i, "correct")
+        if (currentWordLetter === answerWordLetter) {
+            changeColourOfCell(i, "correct");
             currentWordArray[i] = "";
             answerWordArray[i] = "";
-        } 
+        }
     }
 
     for (let i = 0; i < 5; i++) {
         const answerWordLetter = answerWordArray[i];
+
         if (currentWordArray.includes(answerWordLetter)) {
-            const indexOfLetter = currentWordArray.indexOf(answerWordLetter)
-            changeColourOfCell(indexOfLetter, "present")
-            currentWordArray[indexOfLetter] = ""
+            const indexOfLetter = currentWordArray.indexOf(answerWordLetter);
+            changeColourOfCell(indexOfLetter, "present");
+            currentWordArray[indexOfLetter] = "";
             answerWordArray[i] = "";
+        }
+    }
+
+    for (let i = 0; i < 5; i++) {
+        const currentWordLetter = currentWordArray[i];
+
+        if (currentWordLetter) {
+            changeColourOfCell(i, "absent");
+            currentWordArray[i] = "";
         }
     }
 
@@ -154,7 +195,6 @@ const onEnterPress = (): void => {
     const validWord: boolean = checkValidWord(currentWord);
     if (currentCellIndex === 5 && validWord) {
         checkLetters();
-
         updateCellNumber("enter");
     }
 };
@@ -175,22 +215,31 @@ const onKeyPress = (letter: string): void => {
     }
 };
 
-document.addEventListener("keydown", (event) => {
+const gameLoop = (event: KeyboardEvent): void => {
     currentRow = rows[currentRowIndex];
-    
+
     let key: string = event.key;
-    
+
     if (key === "Enter") {
         onEnterPress();
     } else if (key === "Backspace") {
         onBackspacePress();
     } else if (
         ((key.charCodeAt(0) >= 97 && key.charCodeAt(0) <= 122) ||
-        (key.charCodeAt(0) >= 65 && key.charCodeAt(0) <= 90)) &&
+            (key.charCodeAt(0) >= 65 && key.charCodeAt(0) <= 90)) &&
         key.length === 1
-        ) {
-            onKeyPress(key);
-        }
-        
+    ) {
+        onKeyPress(key);
+    }
+
     updateCurrentWord();
-});
+
+    if (currentRowIndex >= 6) {
+        if (checkWin()) {
+            return;
+        }
+        lose();
+    }
+};
+
+document.addEventListener("keydown", gameLoop);
