@@ -43,6 +43,7 @@ const rows = document.querySelectorAll(".row");
 const createAnswerWord = (): void => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
     answerWord = allAnswerWords[randomNumber].toUpperCase();
+    console.log("answer: ", answerWord);
 };
 
 createAnswerWord();
