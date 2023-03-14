@@ -14857,4 +14857,13 @@ export const allAnswerWords = [
     "widow",
     "augur",
 ];
+export const lettersInRow1 = [
+    "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"
+];
+export const lettersInRow2 = [
+    "A", "S", "D", "F", "G", "H", "J", "K", "L"
+];
+export const lettersInRow3 = [
+    "Z", "X", "C", "V", "B", "N", "M"
+];
 //# sourceMappingURL=constants.js.map

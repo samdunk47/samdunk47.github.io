@@ -14857,3 +14857,12 @@ export const allAnswerWords: string[] = [
     "widow",
     "augur",
 ];
+export const lettersInRow1: string[] = [
+    "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"
+];
+export const lettersInRow2: string[] = [
+    "A", "S", "D", "F", "G", "H", "J", "K", "L"
+];
+export const lettersInRow3: string[] = [
+    "Z", "X", "C", "V", "B", "N", "M"
+];

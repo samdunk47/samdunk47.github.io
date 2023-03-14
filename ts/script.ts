@@ -1,11 +1,19 @@
-import { allWordsExceptAnswers, allAnswerWords } from "./constants.js";
+import {
+    allWordsExceptAnswers,
+    allAnswerWords,
+    lettersInRow1,
+    lettersInRow2,
+    lettersInRow3,
+} from "./constants.js";
 
 const board = document.getElementById("board");
 const popup = document.getElementById("popup");
 const resultText = document.getElementById("result-text");
 const resultValue = document.getElementById("result-value");
 const playAgainButton = document.getElementById("play-again-button");
+const keyboard = document.getElementById("keyboard");
 
+const keyboardLetters = [lettersInRow1, lettersInRow2, lettersInRow3];
 const allWords: string[] = allWordsExceptAnswers.concat(allAnswerWords);
 const answersLength: number = allAnswerWords.length;
 let currentRowIndex: number = 0;
@@ -36,7 +44,23 @@ const createCells = (): void => {
     }
 };
 
+const createKeyboard = (): void => {
+    for (let i = 0; i < 3; i++) {
+        const row = keyboardLetters[i]
+        const keyboardRow = document.createElement("div");
+        keyboardRow.className = "keyboard-row-" + i.toString();
+
+        for (let j = 0; j < row.length; j++) {
+            console.log(i, j);
+            
+        }
+
+        keyboard?.appendChild(keyboardRow);
+    }
+};
+
 createCells();
+createKeyboard();
 
 const rows = document.querySelectorAll(".row");
 

@@ -1,9 +1,11 @@
-import { allWordsExceptAnswers, allAnswerWords } from "./constants.js";
+import { allWordsExceptAnswers, allAnswerWords, lettersInRow1, lettersInRow2, lettersInRow3, } from "./constants.js";
 const board = document.getElementById("board");
 const popup = document.getElementById("popup");
 const resultText = document.getElementById("result-text");
 const resultValue = document.getElementById("result-value");
 const playAgainButton = document.getElementById("play-again-button");
+const keyboard = document.getElementById("keyboard");
+const keyboardLetters = [lettersInRow1, lettersInRow2, lettersInRow3];
 const allWords = allWordsExceptAnswers.concat(allAnswerWords);
 const answersLength = allAnswerWords.length;
 let currentRowIndex = 0;
@@ -29,7 +31,19 @@ const createCells = () => {
         board === null || board === void 0 ? void 0 : board.appendChild(row);
     }
 };
+const createKeyboard = () => {
+    for (let i = 0; i < 3; i++) {
+        const row = keyboardLetters[i];
+        const keyboardRow = document.createElement("div");
+        keyboardRow.className = "keyboard-row-" + i.toString();
+        for (let j = 0; j < row.length; j++) {
+            console.log(i, j);
+        }
+        keyboard === null || keyboard === void 0 ? void 0 : keyboard.appendChild(keyboardRow);
+    }
+};
 createCells();
+createKeyboard();
 const rows = document.querySelectorAll(".row");
 const createAnswerWord = () => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
