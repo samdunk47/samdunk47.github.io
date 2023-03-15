@@ -13,7 +13,12 @@ const resultValue = document.getElementById("result-value");
 const playAgainButton = document.getElementById("play-again-button");
 const keyboard = document.getElementById("keyboard");
 
-const keyboardLetters = [lettersInRow1, lettersInRow2, lettersInRow3];
+const keyboardLetters = lettersInRow1.concat(lettersInRow2, lettersInRow3);
+const keyboardLettersArray: string[][] = [
+    lettersInRow1,
+    lettersInRow2,
+    lettersInRow3,
+];
 const allWords: string[] = allWordsExceptAnswers.concat(allAnswerWords);
 const answersLength: number = allAnswerWords.length;
 let currentRowIndex: number = 0;
@@ -23,6 +28,11 @@ let answerWord: string;
 let randomNumber: number;
 let currentWord: string;
 const possibleStates: string[] = ["correct", "present", "absent"];
+
+interface Letter {
+    [key: string]: string;
+}
+let keyboardDictionary: Letter = {}
 
 const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
@@ -44,15 +54,21 @@ const createCells = (): void => {
     }
 };
 
+const createKeyboardDictionary = (): void => {
+    for (let key of keyboardLetters) {
+        keyboardDictionary[key] = "unentered";
+    }
+};
+
 const createKeyboard = (): void => {
     for (let i = 0; i < 3; i++) {
-        const row = keyboardLetters[i]
+        const row = keyboardLettersArray[i];
         const keyboardRow = document.createElement("div");
         keyboardRow.className = "keyboard-row-" + i.toString();
 
         for (let j = 0; j < row.length; j++) {
-            console.log(i, j);
-            
+            const key = document.createElement("button");
+
         }
 
         keyboard?.appendChild(keyboardRow);
@@ -60,6 +76,7 @@ const createKeyboard = (): void => {
 };
 
 createCells();
+createKeyboardDictionary();
 createKeyboard();
 
 const rows = document.querySelectorAll(".row");

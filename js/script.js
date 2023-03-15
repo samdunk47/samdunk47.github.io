@@ -5,7 +5,12 @@ const resultText = document.getElementById("result-text");
 const resultValue = document.getElementById("result-value");
 const playAgainButton = document.getElementById("play-again-button");
 const keyboard = document.getElementById("keyboard");
-const keyboardLetters = [lettersInRow1, lettersInRow2, lettersInRow3];
+const keyboardLetters = lettersInRow1.concat(lettersInRow2, lettersInRow3);
+const keyboardLettersArray = [
+    lettersInRow1,
+    lettersInRow2,
+    lettersInRow3,
+];
 const allWords = allWordsExceptAnswers.concat(allAnswerWords);
 const answersLength = allAnswerWords.length;
 let currentRowIndex = 0;
@@ -31,9 +36,16 @@ const createCells = () => {
         board === null || board === void 0 ? void 0 : board.appendChild(row);
     }
 };
+const createKeyboardDictionary = () => {
+    let keyboardDictionary = {};
+    for (let key of keyboardLetters) {
+        keyboardDictionary[key] = "unentered";
+    }
+    console.log(keyboardDictionary["Y"]);
+};
 const createKeyboard = () => {
     for (let i = 0; i < 3; i++) {
-        const row = keyboardLetters[i];
+        const row = keyboardLettersArray[i];
         const keyboardRow = document.createElement("div");
         keyboardRow.className = "keyboard-row-" + i.toString();
         for (let j = 0; j < row.length; j++) {
@@ -43,7 +55,8 @@ const createKeyboard = () => {
     }
 };
 createCells();
-createKeyboard();
+createKeyboardDictionary();
+// createKeyboard();
 const rows = document.querySelectorAll(".row");
 const createAnswerWord = () => {
     randomNumber = Math.floor(Math.random() * (answersLength + 1));
