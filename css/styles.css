@@ -35,9 +35,15 @@ body {
     height: 348px;
     position: absolute;
     left: 50%;
-    transform: translate(-50%);
-    top: clamp(calc(40% - 175px), 100px, 100px);
-    margin-top: 125px;
+    top: clamp(110px, 20%, 20%);
+    /* transform: translate(-50%, calc(-50% + 200px)); */
+    transform: translate(-50%, calc(-50% + 198px));
+    /* top: clamp(125px, calc(20% + 100px), calc(50% - 100px)); */
+    /* top: clamp(125px,
+                 calc(100px + 40%),
+                 40%
+                 ); 
+    */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -91,7 +97,6 @@ body {
     font-size: 40px;
     font-weight: 750;
 }
-
 
 .fade-in {
     animation: fadeIn 1s;
