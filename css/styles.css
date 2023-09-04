@@ -30,14 +30,21 @@ body {
     margin-top: 0;
 }
 
+#board-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 #board {
     width: 290px;
     height: 348px;
-    position: absolute;
-    left: 50%;
-    top: clamp(110px, 20%, 20%);
+    /* margin-top: 10px; */
+    /* position: absolute; */
+    /* top: clamp(110px, 20%, 20%); */
     /* transform: translate(-50%, calc(-50% + 200px)); */
-    transform: translate(-50%, calc(-50% + 198px));
+    /* transform: translate(-50%, calc(-50% + 198px)); */
     /* top: clamp(125px, calc(20% + 100px), calc(50% - 100px)); */
     /* top: clamp(125px,
                  calc(100px + 40%),
@@ -51,15 +58,26 @@ body {
     overflow: hidden;
 }
 
+#popup-container {
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    transform: translate(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 #popup {
     background-color: var(--background2);
     width: 350px;
-    height: 100px;
-    position: absolute;
+    height: 300px;
+    /* position: absolute;
     left: 50%;
-    transform: translate(-50%);
-    top: clamp(calc(40% - 175px), 100px, 100px);
-    border-radius: 25px;
+    transform: translate(-50%); */
+    /* top: clamp(calc(40% - 175px), 100px, 1nod00px); */
+    border-radius: 15px;
     display: none;
     flex-wrap: wrap;
     justify-content: center;
@@ -69,16 +87,20 @@ body {
 #result-text {
     padding: 0;
     margin: 0;
-    margin-top: 500px;
+    position: inherit;
+    /* top: 100px; */
+    /* margin-top: 500px; */
     font-family: var(--font-family);
     color: var(--text);
     font-size: 65px;
+    margin-bottom: 50px;
 }
 
 #play-again-button {
     padding: 0;
     margin: 0;
-    margin-top: 410px;
+    position: inherit;
+    /* margin-top: 410px; */
     background-color: var(--background4);
     width: 250px;
     height: 90px;
@@ -96,6 +118,22 @@ body {
     font-family: var(--font-family);
     font-size: 40px;
     font-weight: 750;
+}
+
+#close-popup-button {
+    color: var(--text);
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+}
+
+#close-popup-button:hover {
+    cursor: pointer;
 }
 
 .fade-in {

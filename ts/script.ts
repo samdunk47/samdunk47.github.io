@@ -11,6 +11,7 @@ const popup = document.getElementById("popup");
 const resultText = document.getElementById("result-text");
 const resultValue = document.getElementById("result-value");
 const playAgainButton = document.getElementById("play-again-button");
+const closePopupButton = document.getElementById("close-popup-button");
 const keyboard = document.getElementById("keyboard");
 
 const keyboardLetters = lettersInRow1.concat(lettersInRow2, lettersInRow3);
@@ -32,7 +33,7 @@ const possibleStates: string[] = ["correct", "present", "absent"];
 interface Letter {
     [key: string]: string;
 }
-let keyboardDictionary: Letter = {}
+let keyboardDictionary: Letter = {};
 
 const createCells = (): void => {
     for (let i = 0; i <= 5; i++) {
@@ -68,7 +69,6 @@ const createKeyboard = (): void => {
 
         for (let j = 0; j < row.length; j++) {
             const key = document.createElement("button");
-
         }
 
         keyboard?.appendChild(keyboardRow);
@@ -149,6 +149,7 @@ const enablePopup = () => {
         popup!.style.display = "flex";
     }, 250);
     playAgainButton!.addEventListener("click", playAgain);
+    closePopupButton!.addEventListener("click", closePopup);
 };
 
 const win = () => {
@@ -161,6 +162,10 @@ const lose = () => {
     enablePopup();
     resultValue!.innerHTML = "Lose!";
     resultValue!.style.color = "#d3494e";
+};
+
+const closePopup = () => {
+    popup!.style.display = "none";
 };
 
 const playAgain = (): void => {
